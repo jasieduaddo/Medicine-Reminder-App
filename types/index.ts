@@ -6,13 +6,10 @@ export interface Profile {
   browser_notifications_enabled: boolean
   whatsapp_notifications_enabled: boolean
   role: string
-<<<<<<< HEAD
   is_premium: boolean
   stripe_customer_id: string | null
   stripe_subscription_id: string | null
   premium_expires_at: string | null
-=======
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 }
 
 export interface Medication {

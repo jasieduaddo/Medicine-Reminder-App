@@ -3,8 +3,6 @@ import { stripe } from '@/lib/stripe-server'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import type Stripe from 'stripe'
 
-export const config = { api: { bodyParser: false } }
-
 async function setPremium(userId: string, subscriptionId: string, expiresAt: Date | null) {
   await supabaseAdmin
     .from('profiles')
@@ -40,14 +38,15 @@ export async function POST(req: NextRequest) {
         const userId = subscription.metadata?.supabase_user_id
         if (!userId) break
 
-        const expiresAt = new Date(subscription.current_period_end * 1000)
+        const periodEnd = subscription.items.data[0]?.current_period_end
+        const expiresAt = periodEnd ? new Date(periodEnd * 1000) : null
         await supabaseAdmin
           .from('profiles')
           .update({
             is_premium: true,
             stripe_customer_id: session.customer as string,
             stripe_subscription_id: subscription.id,
-            premium_expires_at: expiresAt.toISOString(),
+            premium_expires_at: expiresAt?.toISOString() ?? null,
           })
           .eq('id', userId)
         break
@@ -58,14 +57,15 @@ export async function POST(req: NextRequest) {
         const userId = sub.metadata?.supabase_user_id
         if (!userId) break
 
-        const expiresAt = new Date(sub.current_period_end * 1000)
+        const periodEnd = sub.items.data[0]?.current_period_end
+        const expiresAt = periodEnd ? new Date(periodEnd * 1000) : null
         const active = sub.status === 'active' || sub.status === 'trialing'
         await supabaseAdmin
           .from('profiles')
           .update({
             is_premium: active,
             stripe_subscription_id: sub.id,
-            premium_expires_at: expiresAt.toISOString(),
+            premium_expires_at: expiresAt?.toISOString() ?? null,
           })
           .eq('id', userId)
         break
@@ -89,7 +89,8 @@ export async function POST(req: NextRequest) {
 
       case 'invoice.payment_failed': {
         const invoice = event.data.object as Stripe.Invoice
-        const subId = typeof invoice.subscription === 'string' ? invoice.subscription : invoice.subscription?.id
+        const subRef = invoice.parent?.subscription_details?.subscription
+        const subId = typeof subRef === 'string' ? subRef : subRef?.id
         if (!subId) break
 
         const sub = await stripe.subscriptions.retrieve(subId)

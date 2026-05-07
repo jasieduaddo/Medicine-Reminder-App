@@ -25,11 +25,7 @@ export function useTodayDoses() {
   })
 }
 
-<<<<<<< HEAD
 export function useDoseLogs(options?: { limit?: number; offset?: number; date?: string; startDate?: string; endDate?: string }) {
-=======
-export function useDoseLogs(options?: { limit?: number; offset?: number; date?: string }) {
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
   const userId = useAuthStore((s) => s.userId)
   return useQuery({
     queryKey: ['doseLogs', userId, options],

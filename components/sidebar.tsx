@@ -1,6 +1,5 @@
 'use client'
 
-<<<<<<< HEAD
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -9,25 +8,6 @@ import { useT } from '@/hooks/useT'
 import { useLocaleStore } from '@/stores/localeStore'
 import { usePremium } from '@/hooks/usePremium'
 import { UpgradeModal } from '@/components/PremiumGate'
-=======
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useAuth } from '@/hooks/useAuth'
-
-interface NavItem {
-  label: string
-  href: string
-  icon: string
-}
-
-const allNavItems: NavItem[] = [
-  { label: 'Dashboard', href: '/dashboard', icon: '🏠' },
-  { label: 'Medications', href: '/medications', icon: '💊' },
-  { label: 'Inventory', href: '/inventory', icon: '📦' },
-  { label: 'History', href: '/history', icon: '📋' },
-  { label: 'Settings', href: '/settings', icon: '⚙️' },
-]
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 
 interface SidebarProps {
   isOpen?: boolean
@@ -37,7 +17,6 @@ interface SidebarProps {
 export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const pathname = usePathname()
   const { logout } = useAuth()
-<<<<<<< HEAD
   const t = useT()
   const { locale, setLocale } = useLocaleStore()
   const { isPremium } = usePremium()
@@ -50,8 +29,6 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     { label: t.nav.history,     href: '/history',      icon: '📋' },
     { label: t.nav.settings,    href: '/settings',     icon: '⚙️' },
   ]
-=======
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 
   return (
     <>
@@ -76,21 +53,13 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 md:hidden"
           >
-<<<<<<< HEAD
             {t.nav.close}
-=======
-            Close
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
           </button>
         </div>
 
         <nav className="flex-1 py-4 overflow-y-auto">
           <ul className="space-y-1">
-<<<<<<< HEAD
             {navItems.map((item) => {
-=======
-            {allNavItems.map((item) => {
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
               return (
                 <li key={item.href}>
@@ -112,7 +81,6 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
           </ul>
         </nav>
 
-<<<<<<< HEAD
         <div className="px-4 py-3 border-t border-gray-100 space-y-2">
           {/* Premium / Upgrade */}
           {isPremium ? (
@@ -155,9 +123,6 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             </button>
           </div>
 
-=======
-        <div className="px-2 py-4 border-t border-gray-100">
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
           <button
             onClick={() => {
               logout()
@@ -166,19 +131,12 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             className="flex items-center gap-2 w-full px-4 py-3 rounded-lg text-sm text-red-600 hover:bg-red-50 transition-colors"
           >
             <span className="text-base leading-none">🚪</span>
-<<<<<<< HEAD
             <span>{t.nav.logOut}</span>
           </button>
         </div>
       </aside>
 
       <UpgradeModal open={showUpgradeModal} onClose={() => setShowUpgradeModal(false)} />
-=======
-            <span>Log out</span>
-          </button>
-        </div>
-      </aside>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
     </>
   )
 }

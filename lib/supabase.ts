@@ -52,8 +52,7 @@ export async function getSession() {
   return session
 }
 
-<<<<<<< HEAD
-export async function signInWithOAuth(provider: 'google' | 'apple' | 'azure') {
+export async function signInWithOAuth(provider: 'google') {
   const origin = typeof window !== 'undefined' ? window.location.origin : (process.env.NEXT_PUBLIC_SITE_URL ?? '')
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
@@ -65,8 +64,6 @@ export async function signInWithOAuth(provider: 'google' | 'apple' | 'azure') {
   return data
 }
 
-=======
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 export async function resetPassword(email: string) {
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? ''}/reset-password`,

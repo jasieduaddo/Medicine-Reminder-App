@@ -156,11 +156,7 @@ export async function getDoseLogsForDate(userId: string, date: string): Promise<
 
 export async function getDoseLogs(
   userId: string,
-<<<<<<< HEAD
   options?: { limit?: number; offset?: number; date?: string; startDate?: string; endDate?: string }
-=======
-  options?: { limit?: number; offset?: number; date?: string }
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 ): Promise<DoseLog[]> {
   let query = supabase
     .from('dose_logs')
@@ -172,13 +168,10 @@ export async function getDoseLogs(
     query = query
       .gte('scheduled_time', `${options.date}T00:00:00`)
       .lte('scheduled_time', `${options.date}T23:59:59.999`)
-<<<<<<< HEAD
   } else if (options?.startDate && options?.endDate) {
     query = query
       .gte('scheduled_time', `${options.startDate}T00:00:00`)
       .lte('scheduled_time', `${options.endDate}T23:59:59.999`)
-=======
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
   }
 
   if (options?.limit !== undefined) {

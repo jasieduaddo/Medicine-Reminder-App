@@ -1,11 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useQueryClient } from '@tanstack/react-query'
-<<<<<<< HEAD
 import { signIn, signUp, signOut, signInWithOAuth, supabase } from '@/lib/supabase'
-=======
-import { signIn, signUp, signOut, supabase } from '@/lib/supabase'
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 import { useAuthStore } from '@/stores/authStore'
 
 export function useAuth() {
@@ -17,7 +13,6 @@ export function useAuth() {
     const data = await signIn(email, password)
     if (data.user) {
       setUser(data.user.id, data.user.email ?? '')
-      // Fetch admin role
       const { data: profile } = await supabase
         .from('profiles')
         .select('role')
@@ -36,11 +31,8 @@ export function useAuth() {
     return signUp(email, password, metadata)
   }
 
-<<<<<<< HEAD
-  const loginWithOAuth = (provider: 'google' | 'apple' | 'azure') => signInWithOAuth(provider)
+  const loginWithOAuth = () => signInWithOAuth('google')
 
-=======
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
   const logout = async () => {
     await signOut()
     clearUser()
@@ -48,9 +40,5 @@ export function useAuth() {
     router.push('/login')
   }
 
-<<<<<<< HEAD
   return { login, register, logout, loginWithOAuth, userId, isAuthenticated, isLoading }
-=======
-  return { login, register, logout, userId, isAuthenticated, isLoading }
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 }

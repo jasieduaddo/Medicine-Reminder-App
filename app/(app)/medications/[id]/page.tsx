@@ -5,10 +5,7 @@ import { useRouter } from 'next/navigation'
 import {
   useMedication,
   useUpdateMedication,
-<<<<<<< HEAD
   useMedications,
-=======
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 } from '@/hooks/useMedications'
 import {
   useCreateSchedule,
@@ -18,14 +15,11 @@ import {
 import { useInventory, useUpsertInventory, useUpdateInventory } from '@/hooks/useInventory'
 import { useAppStore } from '@/stores/appStore'
 import { formatTime, formatDate, DAY_NAMES, daysRemaining, isRunningLow, runOutDate } from '@/lib/utils'
-<<<<<<< HEAD
 import PharmacyInput from '@/components/PharmacyInput'
 import MedicineNameInput from '@/components/MedicineNameInput'
 import { useT } from '@/hooks/useT'
 import { usePremium } from '@/hooks/usePremium'
 import { UpgradeModal } from '@/components/PremiumGate'
-=======
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 import type { Schedule, Inventory } from '@/types'
 
 // ─── Types ────────────────────────────────────────────────
@@ -79,17 +73,11 @@ export default function MedicationDetailPage({
 }) {
   const { id } = params
   const router = useRouter()
-<<<<<<< HEAD
   const t = useT()
   const userId = useAppStore((s) => s.userId)
 
   const { data: medication, isLoading } = useMedication(id)
   const { data: allMedications } = useMedications()
-=======
-  const userId = useAppStore((s) => s.userId)
-
-  const { data: medication, isLoading } = useMedication(id)
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
   const { data: inventory } = useInventory(id)
   const updateMedication = useUpdateMedication()
   const createSchedule = useCreateSchedule()
@@ -98,12 +86,9 @@ export default function MedicationDetailPage({
   const createInventory = useUpsertInventory()
   const updateInventory = useUpdateInventory()
 
-<<<<<<< HEAD
   const { isPremium } = usePremium()
   const [showUpgradeModal, setShowUpgradeModal] = useState(false)
 
-=======
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
   // Modal visibility
   const [showEditMedModal, setShowEditMedModal] = useState(false)
   const [showAddScheduleModal, setShowAddScheduleModal] = useState(false)
@@ -367,11 +352,7 @@ export default function MedicationDetailPage({
             onClick={() => router.back()}
             className="text-gray-500 hover:text-gray-800 text-sm font-medium flex items-center gap-1"
           >
-<<<<<<< HEAD
             {t.medications.back}
-=======
-            ← Back
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
           </button>
           <div className="flex-1">
             <h1 className="text-2xl font-bold text-gray-900">{medication.name}</h1>
@@ -380,78 +361,47 @@ export default function MedicationDetailPage({
             onClick={openEditMedModal}
             className="bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
           >
-<<<<<<< HEAD
             {t.common.edit}
-=======
-            Edit
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
           </button>
         </div>
 
         {/* Details Card */}
         <div className="bg-white rounded-xl shadow-sm p-6">
-<<<<<<< HEAD
           <h2 className="font-semibold text-gray-800 mb-4">{t.medications.details}</h2>
           <dl className="space-y-3">
             <div className="flex gap-2">
               <dt className="text-sm text-gray-500 w-40 flex-shrink-0">{t.medications.dosageLabel}</dt>
-=======
-          <h2 className="font-semibold text-gray-800 mb-4">Medication Details</h2>
-          <dl className="space-y-3">
-            <div className="flex gap-2">
-              <dt className="text-sm text-gray-500 w-40 flex-shrink-0">Dosage</dt>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               <dd className="text-sm text-gray-900 font-medium">
                 {medication.dosage} {medication.unit}
               </dd>
             </div>
             {medication.instructions && (
               <div className="flex gap-2">
-<<<<<<< HEAD
                 <dt className="text-sm text-gray-500 w-40 flex-shrink-0">{t.medications.instructionsLabel}</dt>
-=======
-                <dt className="text-sm text-gray-500 w-40 flex-shrink-0">Instructions</dt>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 <dd className="text-sm text-gray-900">{medication.instructions}</dd>
               </div>
             )}
             {medication.pharmacy_name && (
               <div className="flex gap-2">
-<<<<<<< HEAD
                 <dt className="text-sm text-gray-500 w-40 flex-shrink-0">{t.medications.pharmacyLabel}</dt>
-=======
-                <dt className="text-sm text-gray-500 w-40 flex-shrink-0">Pharmacy</dt>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 <dd className="text-sm text-gray-900">{medication.pharmacy_name}</dd>
               </div>
             )}
             {medication.pharmacy_phone && (
               <div className="flex gap-2">
-<<<<<<< HEAD
                 <dt className="text-sm text-gray-500 w-40 flex-shrink-0">{t.medications.pharmacyPhoneLabel}</dt>
-=======
-                <dt className="text-sm text-gray-500 w-40 flex-shrink-0">Pharmacy Phone</dt>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 <dd className="text-sm text-gray-900">{medication.pharmacy_phone}</dd>
               </div>
             )}
             {medication.prescribing_doctor && (
               <div className="flex gap-2">
-<<<<<<< HEAD
                 <dt className="text-sm text-gray-500 w-40 flex-shrink-0">{t.medications.doctorLabel}</dt>
-=======
-                <dt className="text-sm text-gray-500 w-40 flex-shrink-0">Doctor</dt>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 <dd className="text-sm text-gray-900">{medication.prescribing_doctor}</dd>
               </div>
             )}
             {medication.prescription_number && (
               <div className="flex gap-2">
-<<<<<<< HEAD
                 <dt className="text-sm text-gray-500 w-40 flex-shrink-0">{t.medications.rxLabel}</dt>
-=======
-                <dt className="text-sm text-gray-500 w-40 flex-shrink-0">Rx Number</dt>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 <dd className="text-sm text-gray-900">{medication.prescription_number}</dd>
               </div>
             )}
@@ -461,29 +411,17 @@ export default function MedicationDetailPage({
         {/* Schedules Card */}
         <div className="bg-white rounded-xl shadow-sm p-6">
           <div className="flex items-center justify-between mb-4">
-<<<<<<< HEAD
             <h2 className="font-semibold text-gray-800">{t.medications.schedulesTitle}</h2>
-=======
-            <h2 className="font-semibold text-gray-800">Schedules</h2>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
             <button
               onClick={openAddScheduleModal}
               className="text-sm text-green-600 hover:text-green-700 font-medium"
             >
-<<<<<<< HEAD
               {t.medications.addSchedule}
-=======
-              + Add Schedule
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
             </button>
           </div>
 
           {medication.schedules.length === 0 ? (
-<<<<<<< HEAD
             <p className="text-sm text-gray-400">{t.medications.noSchedules}</p>
-=======
-            <p className="text-sm text-gray-400">No schedules set up yet.</p>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
           ) : (
             <div className="space-y-3">
               {medication.schedules.map((schedule) => (
@@ -497,11 +435,7 @@ export default function MedicationDetailPage({
                     </p>
                     <p className="text-xs text-gray-500 mt-0.5">
                       {schedule.days_of_week.length === 7
-<<<<<<< HEAD
                         ? t.medications.everyDay
-=======
-                        ? 'Every day'
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                         : schedule.days_of_week.map((d) => DAY_NAMES[d]).join(', ')}
                     </p>
                   </div>
@@ -512,11 +446,7 @@ export default function MedicationDetailPage({
                       className={`relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${
                         schedule.is_active ? 'bg-green-600' : 'bg-gray-300'
                       }`}
-<<<<<<< HEAD
                       title={schedule.is_active ? t.medications.active : t.medications.inactive}
-=======
-                      title={schedule.is_active ? 'Active — click to deactivate' : 'Inactive — click to activate'}
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                     >
                       <span
                         className={`inline-block h-4 w-4 rounded-full bg-white shadow transition-transform ${
@@ -525,11 +455,7 @@ export default function MedicationDetailPage({
                       />
                     </button>
                     <span className="text-xs text-gray-500 w-14">
-<<<<<<< HEAD
                       {schedule.is_active ? t.medications.active : t.medications.inactive}
-=======
-                      {schedule.is_active ? 'Active' : 'Inactive'}
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                     </span>
                     {/* Delete */}
                     <button
@@ -549,41 +475,25 @@ export default function MedicationDetailPage({
         {/* Inventory Card */}
         <div className="bg-white rounded-xl shadow-sm p-6">
           <div className="flex items-center justify-between mb-4">
-<<<<<<< HEAD
             <h2 className="font-semibold text-gray-800">{t.medications.inventoryTitle}</h2>
-=======
-            <h2 className="font-semibold text-gray-800">Inventory</h2>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
             {inventory && (
               <button
                 onClick={openInventoryModal}
                 className="text-sm text-green-600 hover:text-green-700 font-medium"
               >
-<<<<<<< HEAD
                 {t.common.edit}
-=======
-                Edit
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               </button>
             )}
           </div>
 
           {!inventory ? (
             <div>
-<<<<<<< HEAD
               <p className="text-sm text-gray-400 mb-3">{t.medications.noInventoryMsg}</p>
-=======
-              <p className="text-sm text-gray-400 mb-3">No inventory tracking set up.</p>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               <button
                 onClick={openInventoryModal}
                 className="text-sm bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2 rounded-lg transition-colors"
               >
-<<<<<<< HEAD
                 {t.medications.setUpInventory}
-=======
-                Set Up Inventory
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               </button>
             </div>
           ) : (
@@ -596,7 +506,6 @@ export default function MedicationDetailPage({
                     : `only ${inventory.current_stock} dose${inventory.current_stock !== 1 ? 's' : ''} remaining.`}
                 </div>
               )}
-<<<<<<< HEAD
               <div className="mb-3">
                 <button
                   onClick={() => {
@@ -615,11 +524,6 @@ export default function MedicationDetailPage({
               <dl className="space-y-2">
                 <div className="flex gap-2">
                   <dt className="text-sm text-gray-500 w-44 flex-shrink-0">{t.medications.currentStockLabel}</dt>
-=======
-              <dl className="space-y-2">
-                <div className="flex gap-2">
-                  <dt className="text-sm text-gray-500 w-44 flex-shrink-0">Current Stock</dt>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                   <dd className={`text-sm font-semibold ${low ? 'text-red-600' : 'text-green-600'}`}>
                     {inventory.current_stock} dose{inventory.current_stock !== 1 ? 's' : ''}
                     {daysLeft !== null && (
@@ -630,7 +534,6 @@ export default function MedicationDetailPage({
                   </dd>
                 </div>
                 <div className="flex gap-2">
-<<<<<<< HEAD
                   <dt className="text-sm text-gray-500 w-44 flex-shrink-0">{t.medications.dosesPerIntakeLabel}</dt>
                   <dd className="text-sm text-gray-900">{inventory.doses_per_intake}</dd>
                 </div>
@@ -644,21 +547,6 @@ export default function MedicationDetailPage({
                     {inventory.last_refill_date
                       ? formatDate(inventory.last_refill_date)
                       : t.medications.notRecorded}
-=======
-                  <dt className="text-sm text-gray-500 w-44 flex-shrink-0">Doses per Intake</dt>
-                  <dd className="text-sm text-gray-900">{inventory.doses_per_intake}</dd>
-                </div>
-                <div className="flex gap-2">
-                  <dt className="text-sm text-gray-500 w-44 flex-shrink-0">Alert (days before empty)</dt>
-                  <dd className="text-sm text-gray-900">{inventory.refill_alert_days} days</dd>
-                </div>
-                <div className="flex gap-2">
-                  <dt className="text-sm text-gray-500 w-44 flex-shrink-0">Last Refill</dt>
-                  <dd className="text-sm text-gray-900">
-                    {inventory.last_refill_date
-                      ? formatDate(inventory.last_refill_date)
-                      : 'Not recorded'}
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                   </dd>
                 </div>
               </dl>
@@ -667,21 +555,14 @@ export default function MedicationDetailPage({
         </div>
       </div>
 
-<<<<<<< HEAD
       <UpgradeModal open={showUpgradeModal} onClose={() => setShowUpgradeModal(false)} />
 
-=======
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
       {/* ─── Edit Medication Modal ─── */}
       {showEditMedModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
-<<<<<<< HEAD
               <h2 className="text-lg font-semibold text-gray-900">{t.medications.editMed}</h2>
-=======
-              <h2 className="text-lg font-semibold text-gray-900">Edit Medication</h2>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               <button
                 onClick={() => setShowEditMedModal(false)}
                 className="text-gray-400 hover:text-gray-600 text-xl leading-none"
@@ -699,7 +580,6 @@ export default function MedicationDetailPage({
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                   {t.medications.name} <span className="text-red-500">*</span>
                 </label>
                 <MedicineNameInput
@@ -710,26 +590,13 @@ export default function MedicationDetailPage({
                       ?.filter((m) => m.id !== id)
                       .map((m) => m.name) ?? []
                   }
-=======
-                  Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={medForm.name}
-                  onChange={(e) => setMedForm((p) => ({ ...p, name: e.target.value }))}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                     {t.medications.dosage} <span className="text-red-500">*</span>
-=======
-                    Dosage <span className="text-red-500">*</span>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                   </label>
                   <input
                     type="text"
@@ -740,11 +607,7 @@ export default function MedicationDetailPage({
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                     {t.medications.unit} <span className="text-red-500">*</span>
-=======
-                    Unit <span className="text-red-500">*</span>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                   </label>
                   <input
                     type="text"
@@ -757,11 +620,7 @@ export default function MedicationDetailPage({
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                   {t.medications.instructions}
-=======
-                  Instructions
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </label>
                 <textarea
                   value={medForm.instructions}
@@ -773,39 +632,21 @@ export default function MedicationDetailPage({
 
               <div className="pt-2">
                 <p className="text-sm font-semibold text-gray-700 mb-3 border-t border-gray-100 pt-4">
-<<<<<<< HEAD
                   {t.medications.pharmacyDetails}
-=======
-                  Pharmacy Details
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </p>
                 <div className="space-y-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                       {t.medications.pharmacyName}
                     </label>
                     <PharmacyInput
                       value={medForm.pharmacy_name}
                       onChange={(v) => setMedForm((p) => ({ ...p, pharmacy_name: v }))}
-=======
-                      Pharmacy Name
-                    </label>
-                    <input
-                      type="text"
-                      value={medForm.pharmacy_name}
-                      onChange={(e) => setMedForm((p) => ({ ...p, pharmacy_name: e.target.value }))}
-                      className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                       {t.medications.pharmacyPhone}
-=======
-                      Pharmacy Phone
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                     </label>
                     <input
                       type="text"
@@ -816,11 +657,7 @@ export default function MedicationDetailPage({
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                       {t.medications.prescribingDoctor}
-=======
-                      Prescribing Doctor
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                     </label>
                     <input
                       type="text"
@@ -833,11 +670,7 @@ export default function MedicationDetailPage({
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                       {t.medications.prescriptionNumber}
-=======
-                      Prescription Number
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                     </label>
                     <input
                       type="text"
@@ -857,22 +690,14 @@ export default function MedicationDetailPage({
                   onClick={() => setShowEditMedModal(false)}
                   className="flex-1 border border-gray-200 text-gray-700 font-medium py-2.5 rounded-lg text-sm hover:bg-gray-50 transition-colors"
                 >
-<<<<<<< HEAD
                   {t.common.cancel}
-=======
-                  Cancel
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </button>
                 <button
                   type="submit"
                   disabled={updateMedication.isPending}
                   className="flex-1 bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
                 >
-<<<<<<< HEAD
                   {updateMedication.isPending ? t.common.saving : t.medications.saveChanges}
-=======
-                  {updateMedication.isPending ? 'Saving...' : 'Save Changes'}
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </button>
               </div>
             </form>
@@ -885,11 +710,7 @@ export default function MedicationDetailPage({
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
-<<<<<<< HEAD
               <h2 className="text-lg font-semibold text-gray-900">{t.medications.addScheduleModal}</h2>
-=======
-              <h2 className="text-lg font-semibold text-gray-900">Add Schedule</h2>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               <button
                 onClick={() => setShowAddScheduleModal(false)}
                 className="text-gray-400 hover:text-gray-600 text-xl leading-none"
@@ -916,11 +737,7 @@ export default function MedicationDetailPage({
                       : 'bg-white text-gray-600 hover:bg-gray-50'
                   }`}
                 >
-<<<<<<< HEAD
                   {t.medications.specificTime}
-=======
-                  Specific Time
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </button>
                 <button
                   type="button"
@@ -931,21 +748,13 @@ export default function MedicationDetailPage({
                       : 'bg-white text-gray-600 hover:bg-gray-50'
                   }`}
                 >
-<<<<<<< HEAD
                   {t.medications.everyXHours}
-=======
-                  Every X Hours
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </button>
               </div>
 
               {scheduleForm.mode === 'specific' ? (
                 <div>
-<<<<<<< HEAD
                   <label className="block text-sm font-medium text-gray-700 mb-1">{t.medications.time}</label>
-=======
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Time</label>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                   <input
                     type="time"
                     value={scheduleForm.time}
@@ -957,11 +766,7 @@ export default function MedicationDetailPage({
                 <div className="space-y-3">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-<<<<<<< HEAD
                       <label className="block text-sm font-medium text-gray-700 mb-1">{t.medications.startTime}</label>
-=======
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Start Time</label>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                       <input
                         type="time"
                         value={scheduleForm.startTime}
@@ -970,22 +775,14 @@ export default function MedicationDetailPage({
                       />
                     </div>
                     <div>
-<<<<<<< HEAD
                       <label className="block text-sm font-medium text-gray-700 mb-1">{t.medications.everyHours}</label>
-=======
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Every (hours)</label>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                       <select
                         value={scheduleForm.intervalHours}
                         onChange={(e) => setScheduleForm((p) => ({ ...p, intervalHours: e.target.value }))}
                         className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                       >
                         {[2, 3, 4, 6, 8, 12].map((h) => (
-<<<<<<< HEAD
                           <option key={h} value={h}>{h} {t.medications.hours}</option>
-=======
-                          <option key={h} value={h}>{h} hours</option>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                         ))}
                       </select>
                     </div>
@@ -1011,11 +808,7 @@ export default function MedicationDetailPage({
               )}
 
               <div>
-<<<<<<< HEAD
                 <label className="block text-sm font-medium text-gray-700 mb-2">{t.medications.daysOfWeek}</label>
-=======
-                <label className="block text-sm font-medium text-gray-700 mb-2">Days of Week</label>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 <div className="flex gap-2 flex-wrap">
                   {DAY_NAMES.map((day, index) => {
                     const selected = scheduleForm.days_of_week.includes(index)
@@ -1045,11 +838,7 @@ export default function MedicationDetailPage({
                   onChange={(e) => setScheduleForm((p) => ({ ...p, is_active: e.target.checked }))}
                   className="h-4 w-4 accent-green-600 rounded"
                 />
-<<<<<<< HEAD
                 <label htmlFor="is_active" className="text-sm text-gray-700 font-medium">{t.medications.activeLabel}</label>
-=======
-                <label htmlFor="is_active" className="text-sm text-gray-700 font-medium">Active</label>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               </div>
 
               <div className="flex gap-3">
@@ -1058,22 +847,14 @@ export default function MedicationDetailPage({
                   onClick={() => setShowAddScheduleModal(false)}
                   className="flex-1 border border-gray-200 text-gray-700 font-medium py-2.5 rounded-lg text-sm hover:bg-gray-50 transition-colors"
                 >
-<<<<<<< HEAD
                   {t.common.cancel}
-=======
-                  Cancel
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </button>
                 <button
                   type="submit"
                   disabled={createSchedule.isPending}
                   className="flex-1 bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
                 >
-<<<<<<< HEAD
                   {createSchedule.isPending ? t.medications.adding : t.medications.addScheduleModal}
-=======
-                  {createSchedule.isPending ? 'Adding...' : 'Add Schedule'}
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </button>
               </div>
             </form>
@@ -1087,11 +868,7 @@ export default function MedicationDetailPage({
           <div className="bg-white rounded-2xl p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-gray-900">
-<<<<<<< HEAD
                 {inventory ? t.medications.editInventory : t.medications.setUpInventory}
-=======
-                {inventory ? 'Edit Inventory' : 'Set Up Inventory'}
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               </h2>
               <button
                 onClick={() => setShowInventoryModal(false)}
@@ -1110,11 +887,7 @@ export default function MedicationDetailPage({
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                   {t.medications.currentStock}
-=======
-                  Current Stock (doses)
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </label>
                 <input
                   type="number"
@@ -1128,11 +901,7 @@ export default function MedicationDetailPage({
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                   {t.medications.dosesPerIntake}
-=======
-                  Doses per Intake
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </label>
                 <input
                   type="number"
@@ -1145,11 +914,7 @@ export default function MedicationDetailPage({
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                   {t.medications.alertDays}
-=======
-                  Alert (days before empty)
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </label>
                 <input
                   type="number"
@@ -1164,11 +929,7 @@ export default function MedicationDetailPage({
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                   {t.medications.lastRefillDate}
-=======
-                  Last Refill Date
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </label>
                 <input
                   type="date"
@@ -1186,11 +947,7 @@ export default function MedicationDetailPage({
                   onClick={() => setShowInventoryModal(false)}
                   className="flex-1 border border-gray-200 text-gray-700 font-medium py-2.5 rounded-lg text-sm hover:bg-gray-50 transition-colors"
                 >
-<<<<<<< HEAD
                   {t.common.cancel}
-=======
-                  Cancel
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </button>
                 <button
                   type="submit"
@@ -1198,13 +955,8 @@ export default function MedicationDetailPage({
                   className="flex-1 bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
                 >
                   {createInventory.isPending || updateInventory.isPending
-<<<<<<< HEAD
                     ? t.common.saving
                     : t.common.save}
-=======
-                    ? 'Saving...'
-                    : 'Save'}
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 </button>
               </div>
             </form>

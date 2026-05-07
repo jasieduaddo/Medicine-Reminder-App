@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useProfile, useUpsertProfile } from '@/hooks/useProfile'
-<<<<<<< HEAD
 import { useT } from '@/hooks/useT'
 import { useLocaleStore } from '@/stores/localeStore'
 import { usePremium } from '@/hooks/usePremium'
@@ -16,12 +15,6 @@ export default function SettingsPage() {
   const [showUpgradeModal, setShowUpgradeModal] = useState(false)
   const [portalLoading, setPortalLoading] = useState(false)
   const [portalError, setPortalError] = useState<string | null>(null)
-=======
-
-export default function SettingsPage() {
-  const { data: profile, isLoading } = useProfile()
-  const upsertProfile = useUpsertProfile()
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 
   const [whatsappPhone, setWhatsappPhone] = useState('')
   const [whatsappApiKey, setWhatsappApiKey] = useState('')
@@ -52,11 +45,7 @@ export default function SettingsPage() {
       })
       setSuccess(true)
     } catch {
-<<<<<<< HEAD
       setError(t.settings.saveError)
-=======
-      setError('Failed to save settings. Please try again.')
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
     }
   }
 
@@ -73,11 +62,7 @@ export default function SettingsPage() {
 
   return (
     <div className="pl-2 sm:pl-3 max-w-xl">
-<<<<<<< HEAD
       <h1 className="text-2xl font-bold text-gray-900 mb-6">{t.settings.title}</h1>
-=======
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Settings</h1>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
 
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 text-sm p-3 rounded-lg mb-4">
@@ -86,7 +71,6 @@ export default function SettingsPage() {
       )}
       {success && (
         <div className="bg-green-50 border border-green-200 text-green-700 text-sm p-3 rounded-lg mb-4">
-<<<<<<< HEAD
           {t.settings.savedSuccess}
         </div>
       )}
@@ -168,47 +152,25 @@ export default function SettingsPage() {
           <h2 className="text-base font-semibold text-gray-900 mb-4">{t.settings.whatsapp}</h2>
           <p className="text-sm text-gray-500 mb-4">
             {t.settings.whatsappDesc}{' '}
-=======
-          Settings saved successfully.
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit} className="space-y-6 bg-white rounded-2xl shadow-sm p-6">
-        <div>
-          <h2 className="text-base font-semibold text-gray-900 mb-4">WhatsApp Notifications</h2>
-          <p className="text-sm text-gray-500 mb-4">
-            Get medication reminders and alerts via WhatsApp. You need a{' '}
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
             <a
               href="https://www.callmebot.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-green-600 hover:underline"
             >
-<<<<<<< HEAD
               {t.settings.whatsappDescLink}
             </a>{' '}
             {t.settings.whatsappDescEnd}
-=======
-              CallMeBot
-            </a>{' '}
-            API key to use this feature.
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
           </p>
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-<<<<<<< HEAD
                 {t.settings.phone}
-=======
-                WhatsApp Phone Number
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               </label>
               <input
                 type="tel"
                 value={whatsappPhone}
                 onChange={(e) => setWhatsappPhone(e.target.value)}
-<<<<<<< HEAD
                 placeholder={t.settings.phonePlaceholder}
                 className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
               />
@@ -217,26 +179,12 @@ export default function SettingsPage() {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 {t.settings.apiKey}
-=======
-                placeholder="+1234567890"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-              />
-              <p className="text-xs text-gray-400 mt-1">International format with country code.</p>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                CallMeBot API Key
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
               </label>
               <input
                 type="password"
                 value={whatsappApiKey}
                 onChange={(e) => setWhatsappApiKey(e.target.value)}
-<<<<<<< HEAD
                 placeholder={t.settings.apiKeyPlaceholder}
-=======
-                placeholder="your-api-key"
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
                 className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
               />
             </div>
@@ -246,11 +194,7 @@ export default function SettingsPage() {
         <hr className="border-gray-100" />
 
         <div>
-<<<<<<< HEAD
           <h2 className="text-base font-semibold text-gray-900 mb-4">{t.settings.notificationPrefs}</h2>
-=======
-          <h2 className="text-base font-semibold text-gray-900 mb-4">Notification Preferences</h2>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
           <div className="space-y-3">
             <label className="flex items-center gap-3 cursor-pointer">
               <input
@@ -259,11 +203,7 @@ export default function SettingsPage() {
                 onChange={(e) => setBrowserEnabled(e.target.checked)}
                 className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
               />
-<<<<<<< HEAD
               <span className="text-sm text-gray-700">{t.settings.appNotifications}</span>
-=======
-              <span className="text-sm text-gray-700">App notifications</span>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
@@ -272,11 +212,7 @@ export default function SettingsPage() {
                 onChange={(e) => setWhatsappEnabled(e.target.checked)}
                 className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
               />
-<<<<<<< HEAD
               <span className="text-sm text-gray-700">{t.settings.whatsappNotifications}</span>
-=======
-              <span className="text-sm text-gray-700">WhatsApp notifications</span>
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
             </label>
           </div>
         </div>
@@ -286,17 +222,9 @@ export default function SettingsPage() {
           disabled={upsertProfile.isPending}
           className="bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors"
         >
-<<<<<<< HEAD
           {upsertProfile.isPending ? t.settings.saving : t.settings.saveSettings}
-=======
-          {upsertProfile.isPending ? 'Saving…' : 'Save Settings'}
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
         </button>
       </form>
     </div>
   )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> fa538c90397a576dcc211c424729f5863ac90cf8
